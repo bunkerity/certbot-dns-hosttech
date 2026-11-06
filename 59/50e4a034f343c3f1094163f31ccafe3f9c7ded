@@ -1,0 +1,55 @@
+.gitignore
+  s_ee5caf38e0741b::t_7349ac25825f5f 1-15
+certbot_dns_hosttech/_internal/dns_hosttech.py
+  s_ee5caf38e0741b::t_cc8c57534dd027 4
+  s_ee5caf38e0741b::t_eacf0f4884f9a9 56-57
+  s_ee5caf38e0741b::t_4edf2470eabfda 1-2,6-7,9-13,24-33,35-46,66,68-78,81-83,86-88,99-107,113-117,120-162,164-177,181-203
+  s_ee5caf38e0741b::t_286b0dbfb7a1d0 3,8,14-23,47-55,58-65,89-98
+  s_ee5caf38e0741b::t_7bebea5bbd9135 5,34,67,79-80,84-85,108-112,118-119,163,178-180
+MANIFEST.in
+  s_ee5caf38e0741b::t_1716aa64c052e1 1,3
+  s_ee5caf38e0741b::t_511e4d0e590692 2
+pyproject.toml
+  s_ee5caf38e0741b::t_7349ac25825f5f 1-34,36-65
+  s_ee5caf38e0741b::t_9cc8b93076a6d6 35
+README.md
+  s_6b6322c8a76e27::t_1a6c070aca84b8 6-23,37,40-43,45,47-50,61,63,77,80,82-83,89-90,92-95,97,99-104,107-110,114-121,123-133,136-138,155-156
+  s_ee5caf38e0741b::t_eacf0f4884f9a9 112,141-144,148,153-154
+  s_ee5caf38e0741b::t_8533c2f4156480 1-5,24-36,38-39,44,46,51-60,62,64-76,78-79,81,84-88,91,96,98,105-106,111,113,122,134-135,139-140,145-147,149-152,157-160
+certbot_dns_hosttech/_internal/__init__.py
+  s_ee5caf38e0741b::t_4edf2470eabfda 1
+requirements-dev.txt
+  s_ee5caf38e0741b::t_a291f92e03d691 1-1097
+LICENSE
+  s_ee5caf38e0741b::t_5dc477bdd57b8d 176-194,196,198-202
+  s_ee5caf38e0741b::t_345479c55489ff 1-175,195,197
+certbot_dns_hosttech/__init__.py
+  s_ee5caf38e0741b::t_4edf2470eabfda 1
+CHANGELOG.md
+  s_ee5caf38e0741b::t_8533c2f4156480 1-8
+  s_ee5caf38e0741b::t_eacf0f4884f9a9 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5950e4a034f343c3f1094163f31ccafe3f9c7ded",
+  "prompts": {},
+  "sessions": {
+    "s_6b6322c8a76e27": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "38acff47-36f4-49e3-94ae-10055f8c7763",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_ee5caf38e0741b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1b199-10a1-7b63-a1c5-417654a8ad5c",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

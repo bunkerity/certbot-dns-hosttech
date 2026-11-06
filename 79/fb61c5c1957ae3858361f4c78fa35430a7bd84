@@ -1,0 +1,40 @@
+.github/plumber/README.md
+  s_8957b83407cdf6::t_6d70d2dd70b1ce 3
+CHANGELOG.md
+  s_793cd38caabcf0::t_e250f8ca39fc27 3,5-9
+.github/workflows/tests.yml
+  s_793cd38caabcf0::t_e250f8ca39fc27 9
+README.md
+  s_793cd38caabcf0::t_e250f8ca39fc27 27,31-33,37-48
+.github/workflows/release.yml
+  s_793cd38caabcf0::t_e250f8ca39fc27 1-10,12-20,22-72,75-127
+  s_793cd38caabcf0::t_9332227e8fae15 73-74
+  s_8957b83407cdf6::t_eb8eb4db469890 11
+  s_8957b83407cdf6::t_34f0ca042a1332 21
+.plumber.yaml
+  s_8957b83407cdf6::t_419cb66a001ecb 3-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "79fb61c5c1957ae3858361f4c78fa35430a7bd84",
+  "prompts": {},
+  "sessions": {
+    "s_793cd38caabcf0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1b1db-b047-7ba1-bbc7-9b60b3497912",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_8957b83407cdf6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0ed5bf7-382f-48ad-b7ad-d9883e810768",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

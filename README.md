@@ -24,15 +24,28 @@ Supports apex names, subdomains and wildcards, including two TXT values at the s
 
 Install the plugin in the **same Python environment as Certbot**. A separate pip installation cannot extend a Certbot snap or another virtual environment.
 
-Until a release is published, build from a checkout:
+The [v0.1.0 release](https://github.com/bunkerity/certbot-dns-hosttech/releases/tag/v0.1.0) will provide a wheel, source archive and `SHA256SUMS`. Once published, install the wheel:
 
 ```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install . 'certbot==5.9.0'
+.venv/bin/python -m pip install \
+  'https://github.com/bunkerity/certbot-dns-hosttech/releases/download/v0.1.0/certbot_dns_hosttech-0.1.0-py3-none-any.whl' \
+  'certbot==5.9.0'
 .venv/bin/certbot plugins --text
 ```
 
-The plugin should appear as `dns-hosttech`. For deployments, install a reviewed immutable commit archive or a built wheel rather than a moving branch.
+The plugin should appear as `dns-hosttech`.
+
+To verify provenance before installation, download the wheel with [GitHub CLI](https://cli.github.com/) and verify its attestation. Then install the verified local file:
+
+```sh
+gh release download v0.1.0 -R bunkerity/certbot-dns-hosttech \
+  --pattern 'certbot_dns_hosttech-0.1.0-py3-none-any.whl'
+gh attestation verify certbot_dns_hosttech-0.1.0-py3-none-any.whl -R bunkerity/certbot-dns-hosttech
+.venv/bin/python -m pip install ./certbot_dns_hosttech-0.1.0-py3-none-any.whl 'certbot==5.9.0'
+```
+
+For development before publication, use `.venv/bin/python -m pip install . 'certbot==5.9.0'` from a checkout.
 
 ### 2. Add your token
 

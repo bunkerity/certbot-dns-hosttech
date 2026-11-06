@@ -1,0 +1,127 @@
+name: Release
+
+permissions: read-all
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  # tests.yml runs the Plumber gate itself; a second direct call would upload a duplicate plumber-report artifact.
+  tests:
+    uses: ./.github/workflows/tests.yml
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+      id-token: write
+
+  build:
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+      - name: Check version and changelog
+        id: version
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          import tomllib
+          from pathlib import Path
+
+          version = tomllib.loads(Path("pyproject.toml").read_text())["project"]["version"]
+          tag = os.environ["GITHUB_REF_NAME"]
+          if tag != f"v{version}":
+              raise SystemExit(f"Tag {tag!r} does not match pyproject.toml version {version!r}")
+          section = re.search(
+              rf"^## {re.escape(tag)} - \d{{4}}/\d{{2}}/\d{{2}}\n(.*?)(?=^## |\Z)",
+              Path("CHANGELOG.md").read_text(),
+              re.MULTILINE | re.DOTALL,
+          )
+          if section is None or not section.group(1).strip():
+              raise SystemExit(f"Missing or empty CHANGELOG.md section for {tag}")
+          changes = section.group(1).strip()
+          Path("release-notes.md").write_text(f"## certbot-dns-hosttech {version}\n\n### Changes\n\n{changes}\n\n")
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a") as output:
+              output.write(f"version={version}\ntag={tag}\n")
+          PY
+      - name: Install locked build tools
+        run: python -m pip install --require-hashes -r requirements-dev.txt
+      - name: Build distributions
+        run: python -m build --no-isolation
+      - name: Check distributions
+        run: python -m twine check dist/*
+      - name: Prepare release assets
+        run: |
+          (cd dist && sha256sum -- *.tar.gz *.whl > SHA256SUMS)
+          wheel=$(basename -- dist/*.whl)
+          cat >> release-notes.md <<EOF
+          ### Installation
+
+          \`\`\`sh
+          python -m pip install "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/${wheel}"
+          \`\`\`
+
+          See the [README](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/README.md) for credentials and usage.
+          EOF
+      - name: Attest distributions
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: |
+            dist/*.whl
+            dist/*.tar.gz
+      - name: Upload release assets
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-assets
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/SHA256SUMS
+            release-notes.md
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Download release assets
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-assets
+      - name: Check distribution hashes
+        working-directory: dist
+        run: sha256sum --check SHA256SUMS
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        with:
+          tag_name: ${{ needs.build.outputs.tag }}
+          name: Release ${{ needs.build.outputs.version }}
+          body_path: release-notes.md
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/SHA256SUMS
+          fail_on_unmatched_files: true
+          draft: false
+          prerelease: ${{ contains(needs.build.outputs.version, '-') }}

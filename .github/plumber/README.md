@@ -1,6 +1,6 @@
 # Plumber
 
-The reusable workflow scans GitHub Actions on every PR and main push through `tests.yml`, and weekly on its own schedule. The gate requires grade B or better (`soft-fail: false`). `.plumber.yaml` extends the upstream default policy without disabling controls or broadening trust lists.
+The reusable workflow scans GitHub Actions on every PR and main push through `tests.yml`, and weekly on its own schedule. The gate requires grade B or better (`soft-fail: false`). `.plumber.yaml` extends the upstream default policy without disabling controls. Its only change adds `softprops/action-gh-release` to the trusted action sources, because `release.yml` creates the GitHub release with it (pinned to a full commit), the same exception `bunkerity/bunkerweb-mcp` carries.
 
 Every external action is pinned to a full commit. Plumber's binary version is explicit and its SLSA attestation is verified. The job uploads JSON, SARIF, PBOM and CycloneDX evidence as run artifacts. SARIF upload is off on pull requests. Public score publishing is off on pull requests and private repositories.
 

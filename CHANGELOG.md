@@ -1,9 +1,9 @@
 # Changelog
 
-## 0.1.0 — Unreleased
+## v0.1.0 - 2026/11/06
 
-- Add Hosttech REST DNS API v1 authenticator for Certbot 5.9.x and Python 3.11–3.14.
-- Discover the longest matching zone across paginated API results.
-- Support concurrent apex/wildcard TXT values and cleanup by created record ID.
-- Add sanitized API errors, credentials validation, offline interface tests and packaging checks.
-- Add hash-locked development dependencies, Dependabot, Plumber, CodeQL and OpenSSF Scorecard workflows with pinned actions.
+- Add Hosttech DNS-01 authentication for Certbot 5.9.x and Python 3.11–3.14.
+- Find the most specific zone across all API pages.
+- Support apex and wildcard TXT values; delete only records created by the plugin.
+- Validate credentials and sanitize API errors, with offline integration tests.
+- Add packaging checks, hashed development dependencies and pinned security workflows.

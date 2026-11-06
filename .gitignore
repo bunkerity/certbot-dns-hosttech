@@ -6,6 +6,7 @@ build/
 dist/
 .coverage*
 htmlcov/
+coverage.xml
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/

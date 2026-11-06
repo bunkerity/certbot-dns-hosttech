@@ -1,5 +1,7 @@
 # certbot-dns-hosttech
 
+[![Codecov coverage](https://codecov.io/gh/bunkerity/certbot-dns-hosttech/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bunkerity/certbot-dns-hosttech)
+
 [Certbot](https://certbot.eff.org/) DNS-01 authenticator for the [Hosttech DNS API](https://api.ns1.hosttech.eu/api/documentation/).
 Supports apex names, subdomains and wildcards, including two TXT values at the same challenge name.
 

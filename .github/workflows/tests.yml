@@ -52,6 +52,18 @@ jobs:
       - run: python -m black --check --workers 1 .
       - run: python -m ruff check .
       - run: python -m mypy
-      - run: python -m pytest -vv --cov --cov-branch --cov-report=term-missing
+      - run: python -m pytest -vv --cov --cov-branch --cov-report=term-missing --cov-report=xml
+      # Upload once per branch run. Reusable release runs inherit the caller's tag ref.
+      # Verification failures stop the action; reporting failures (including fork PRs
+      # without a secret) cannot fail the test job.
+      - name: Upload coverage to Codecov
+        if: matrix.python == '3.11' && github.ref_type == 'branch'
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        continue-on-error: true
+        with:
+          files: coverage.xml
+          disable_search: true
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
       - run: python -m build --no-isolation
       - run: python -m twine check dist/*

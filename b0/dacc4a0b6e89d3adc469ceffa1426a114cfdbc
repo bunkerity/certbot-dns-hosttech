@@ -1,0 +1,30 @@
+.github/SECURITY.md
+  s_ee5caf38e0741b::t_1716aa64c052e1 1-5
+  s_ee5caf38e0741b::t_9cc8b93076a6d6 6
+.github/ISSUE_TEMPLATE/bug_report.yml
+  s_ee5caf38e0741b::t_1716aa64c052e1 1-27
+.github/CONTRIBUTING.md
+  s_ee5caf38e0741b::t_1716aa64c052e1 1-11
+.github/CODEOWNERS
+  s_ee5caf38e0741b::t_1716aa64c052e1 1
+.github/ISSUE_TEMPLATE/config.yml
+  s_ee5caf38e0741b::t_1716aa64c052e1 1-5
+.github/PULL_REQUEST_TEMPLATE.md
+  s_ee5caf38e0741b::t_1716aa64c052e1 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b0dacc4a0b6e89d3adc469ceffa1426a114cfdbc",
+  "prompts": {},
+  "sessions": {
+    "s_ee5caf38e0741b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1b199-10a1-7b63-a1c5-417654a8ad5c",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

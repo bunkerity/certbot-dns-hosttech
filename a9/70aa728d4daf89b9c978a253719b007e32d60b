@@ -1,0 +1,33 @@
+.github/plumber/README.md
+  s_ee5caf38e0741b::t_9cc8b93076a6d6 1-9
+.plumber.yaml
+  s_ee5caf38e0741b::t_1716aa64c052e1 1-2
+.github/dependabot.yml
+  s_ee5caf38e0741b::t_1716aa64c052e1 1-30
+.github/workflows/tests.yml
+  s_ee5caf38e0741b::t_8533c2f4156480 1-2,9-12,17,33,35,37-41,46-47,52-54,56
+  s_ee5caf38e0741b::t_9cc8b93076a6d6 3-8,13-16,18-32,34,36,42-45,48-51,55
+.github/workflows/plumber.yml
+  s_ee5caf38e0741b::t_9cc8b93076a6d6 1-28,30,32-38
+  s_ee5caf38e0741b::t_eacf0f4884f9a9 29,31
+.github/workflows/codeql.yml
+  s_ee5caf38e0741b::t_9cc8b93076a6d6 1-33
+.github/workflows/scorecards-analysis.yml
+  s_ee5caf38e0741b::t_9cc8b93076a6d6 1-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a970aa728d4daf89b9c978a253719b007e32d60b",
+  "prompts": {},
+  "sessions": {
+    "s_ee5caf38e0741b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1b199-10a1-7b63-a1c5-417654a8ad5c",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

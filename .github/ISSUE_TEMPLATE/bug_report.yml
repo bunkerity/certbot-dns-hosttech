@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible plugin problem.
+body:
+  - type: markdown
+    attributes:
+      value: Do not paste API tokens, credentials files or customer data. Report vulnerabilities through the security policy.
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Plugin, Certbot and Python versions, plus installation method.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and expected behavior
+      description: Include a redacted command and error message. Replace real domains with examples.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Actual behavior
+      description: Explain what happened and whether challenge TXT records remained after cleanup.
+    validations:
+      required: true

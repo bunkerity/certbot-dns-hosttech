@@ -1,0 +1,33 @@
+.github/codecov.yml
+  s_51c4cb902afc72::t_21e5b792e8dc05 1-10
+.github/workflows/tests.yml
+  s_51c4cb902afc72::t_21e5b792e8dc05 55-67
+README.md
+  s_51c4cb902afc72::t_21e5b792e8dc05 3-4
+.gitignore
+  s_8957b83407cdf6::t_bb62a625267ed8 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f8fbef7bf38e580d7970d19ee6099dba66a95b3e",
+  "prompts": {},
+  "sessions": {
+    "s_51c4cb902afc72": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1b216-e4b1-7140-95f9-0b730c729c16",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_8957b83407cdf6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0ed5bf7-382f-48ad-b7ad-d9883e810768",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

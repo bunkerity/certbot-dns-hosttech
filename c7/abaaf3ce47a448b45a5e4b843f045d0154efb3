@@ -1,0 +1,21 @@
+AGENTS.md
+  s_ee5caf38e0741b::t_60190c4fb91d1c 1-70
+CLAUDE.md
+  s_ee5caf38e0741b::t_60190c4fb91d1c 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c7abaaf3ce47a448b45a5e4b843f045d0154efb3",
+  "prompts": {},
+  "sessions": {
+    "s_ee5caf38e0741b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1b199-10a1-7b63-a1c5-417654a8ad5c",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

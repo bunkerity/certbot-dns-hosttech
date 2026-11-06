@@ -1,0 +1,38 @@
+name: Plumber CI/CD security scan
+
+on:
+  schedule:
+    - cron: "30 9 * * 1"
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  plumber:
+    name: Analyze GitHub Actions workflows
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: |
+            .github
+            .plumber.yaml
+          persist-credentials: false
+      - name: Run Plumber
+        uses: getplumber/plumber@e0a3bc0d78a31760229264644eb258ab12ba53a5 # v0.7.21
+        with:
+          version: v0.7.21
+          verify-attestation: true
+          config-file: .plumber.yaml
+          min-score: B
+          soft-fail: false
+          upload-sarif: ${{ github.event_name != 'pull_request' }}
+          score-push: ${{ github.event_name != 'pull_request' && github.event.repository.private == false }}
+          upload-artifacts: true

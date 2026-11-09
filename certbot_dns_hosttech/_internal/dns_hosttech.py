@@ -55,8 +55,9 @@ class Authenticator(dns_common.DNSAuthenticator):
             )
         except OSError:
             raise errors.PluginError("Cannot read Hosttech credentials; check the file path and read permissions for the Certbot user.") from None
-        except errors.PluginError as error:
-            if str(error).startswith("Error parsing credentials configuration"):
+        except (errors.PluginError, UnicodeError, LookupError) as error:
+            # ConfigObj's BOM decoder can raise a bare LookupError for an unsupported codec alias.
+            if isinstance(error, UnicodeError) or type(error) is LookupError or str(error).startswith("Error parsing credentials configuration"):
                 raise errors.PluginError(
                     "Cannot parse Hosttech credentials; use a sectionless INI file containing dns_hosttech_api_token = YOUR_TOKEN."
                 ) from None

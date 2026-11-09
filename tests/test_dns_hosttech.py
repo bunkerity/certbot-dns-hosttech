@@ -69,6 +69,22 @@ def test_malformed_credentials_do_not_leak_token(auth, caplog):
 
 
 @pytest.mark.parametrize(
+    "encoding,prefix,message",
+    [
+        ("utf-8", b"", "Cannot parse Hosttech credentials"),
+        ("utf-16-be", b"\xfe\xff", "Cannot parse Hosttech credentials"),
+        ("utf-16-le", b"\xff\xfe", "dns_hosttech_api_token"),
+    ],
+)
+def test_non_utf8_credentials_are_actionable_and_sanitized(auth, caplog, encoding, prefix, message):
+    with open(auth.conf("credentials"), "wb") as stream:
+        stream.write(prefix + ("dns_hosttech_api_token = " + TOKEN).encode(encoding) + b"\xff\n")
+    with caplog.at_level(logging.DEBUG), pytest.raises(errors.PluginError, match=message) as exc:
+        auth._setup_credentials()
+    assert TOKEN not in "".join(traceback.format_exception(exc.value)) + caplog.text
+
+
+@pytest.mark.parametrize(
     "contents", ["", "other_key = value\n", "dns_hosttech_api_token =\n", 'dns_hosttech_api_token = " "\n', "dns_hosttech_api_token = one, two\n"]
 )
 def test_invalid_credentials(auth, contents):

@@ -54,7 +54,7 @@ When changing packaging or discovery, also install the built wheel in a fresh en
 The lock is generated from `pyproject.toml`, not edited by hand:
 
 ```sh
-uv pip compile pyproject.toml --extra dev --universal --generate-hashes --output-file requirements-dev.txt
+uv pip compile pyproject.toml --extra dev --universal --python-version 3.11 --generate-hashes --output-file requirements-dev.txt
 ```
 
 Use `--upgrade-package <name>` for a targeted update. After dependency updates, regenerate the universal lock and check Python 3.11–3.14. Review Dependabot-generated locks against the same process; do not accept interpreter-specific drift silently.

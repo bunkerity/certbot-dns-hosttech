@@ -16,6 +16,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  fuzz:
+    uses: ./.github/workflows/fuzz.yml
+    permissions:
+      contents: read
+
   plumber:
     uses: ./.github/workflows/plumber.yml
     permissions:

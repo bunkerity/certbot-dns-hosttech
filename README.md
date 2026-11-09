@@ -6,6 +6,11 @@
 [![Plumber CI/CD security score](https://score.getplumber.io/github.com/bunkerity/certbot-dns-hosttech.svg)](https://score.getplumber.io/github.com/bunkerity/certbot-dns-hosttech)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/bunkerity/certbot-dns-hosttech/blob/main/LICENSE)
 
+<!-- After registering the project at bestpractices.dev, replace PROJECT_ID and uncomment:
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/PROJECT_ID/badge)](https://www.bestpractices.dev/projects/PROJECT_ID)
+Only claim the level actually awarded; the project has not registered yet.
+-->
+
 [Certbot](https://certbot.eff.org/) DNS-01 authenticator for the [Hosttech DNS API](https://api.ns1.hosttech.eu/api/documentation/).
 Supports apex names, subdomains and wildcards, including two TXT values at the same challenge name.
 
@@ -61,7 +66,7 @@ gh attestation verify certbot_dns_hosttech-0.1.0-py3-none-any.whl -R bunkerity/c
 .venv/bin/python -m pip install ./certbot_dns_hosttech-0.1.0-py3-none-any.whl 'certbot==5.9.0'
 ```
 
-For development before publication, use `.venv/bin/python -m pip install . 'certbot==5.9.0'` from a checkout.
+For development, use the locked setup below from a source checkout.
 
 ### 2. Add your token
 
@@ -114,6 +119,8 @@ After staging succeeds, run the same command without `--dry-run` to obtain a pro
 | --- | --- |
 | `--dns-hosttech-credentials PATH` | Path to the credentials INI file. |
 | `--dns-hosttech-propagation-seconds N` | Fixed wait after creating all challenges, default **600 seconds**. |
+
+The credential file contains `dns_hosttech_api_token = TOKEN` without a section header. The token must be non-empty ASCII without whitespace; the propagation wait must be non-negative. Successful authentication creates validation TXT records and returns DNS-01 responses to Certbot. Cleanup removes only the records created by this instance. Failures become actionable Certbot `PluginError` messages; the plugin does not emit certificates or expose raw provider responses itself. Certbot handles certificate files, renewal state and command exit status.
 
 ### TTL and propagation
 
@@ -181,6 +188,22 @@ python3 -m venv .venv
 Tests mock Hosttech or use an HTTP fake bound to localhost. No provider token is needed. The interface test discovers the installed entry point and calls Certbot `perform`/`cleanup` with real DNS-01 challenges for an apex and wildcard in one batch. It asserts that both values coexist and existing records survive cleanup. This tests the plugin interface and HTTP contract, not issuance by a real ACME server.
 
 CI runs lint, strict typing, 100% branch coverage and packaging checks across Python 3.11–3.14. Development dependencies are pinned with hashes in `requirements-dev.txt`; runtime package metadata retains compatible version ranges. Weekly Dependabot updates cover Python dependencies and GitHub Actions. SHA-pinned Plumber, CodeQL and OpenSSF Scorecard workflows follow the [OSS security workflow notes](https://github.com/bunkerity/certbot-dns-hosttech/blob/main/.github/plumber/README.md). Score publishing is enabled only for public repositories.
+
+Offline Atheris fuzzing exercises zone selection across pages, credential parsing and diagnostic redaction, and API response handling. CI runs each target for 60 seconds through the test workflow and 300 seconds weekly. It blocks socket creation and needs no token. Atheris 3.1.0 wheels are available for Linux x86_64 on Python 3.12–3.14; ordinary tests still cover Python 3.11.
+
+For a local fuzz session on a supported platform, use the development environment above. Run from the source checkout, use a writable temporary corpus first, and retain any crash input for investigation:
+
+```sh
+mkdir -p /tmp/hosttech-fuzz-corpus /tmp/hosttech-fuzz-findings
+.venv/bin/python -m fuzz.fuzz_hosttech zones /tmp/hosttech-fuzz-corpus fuzz/corpus/zones \
+  -max_total_time=60 -max_len=4096 -timeout=10 -artifact_prefix=/tmp/hosttech-fuzz-findings/
+```
+
+Replace `zones` and its seed path with `credentials` or `api` for the other targets. Fuzzing is a separate check and does not replace the coverage gate. Regenerate the universal development lock with `uv pip compile pyproject.toml --extra dev --universal --python-version 3.11 --generate-hashes --output-file requirements-dev.txt` so the host interpreter does not narrow the supported Python range.
+
+Releases export `provenance.intoto.jsonl` (the signed in-toto DSSE envelope) and `provenance.sigstore.json` (the full Sigstore verification bundle). Verify the downloaded distribution against the bundle with `gh attestation verify <distribution> --bundle provenance.sigstore.json -R bunkerity/certbot-dns-hosttech`. The envelope alone omits the certificate and transparency evidence; retain the bundle. Stable releases and prereleases upload every asset to a draft before publication, which supports immutable GitHub releases when maintainers enable that setting.
+
+Report bugs and enhancement requests through [GitHub issues](https://github.com/bunkerity/certbot-dns-hosttech/issues), contribute through [reviewed pull requests](https://github.com/bunkerity/certbot-dns-hosttech/blob/main/.github/CONTRIBUTING.md), and report vulnerabilities through the [private security process](https://github.com/bunkerity/certbot-dns-hosttech/blob/main/.github/SECURITY.md).
 
 </details>
 

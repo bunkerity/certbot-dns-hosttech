@@ -1,0 +1,19 @@
+README.md
+  s_d3876ccf5e3cff::t_bbcb2759146d23 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "09e2e67418d9d636412cc8aa807c2d1b60d0e2e0",
+  "prompts": {},
+  "sessions": {
+    "s_d3876ccf5e3cff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bde8f121-87f9-4fe4-ae20-dfd2d1747a94",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

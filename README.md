@@ -30,7 +30,17 @@ Supports apex names, subdomains and wildcards, including two TXT values at the s
 
 Install the plugin in the **same Python environment as Certbot**. A separate pip installation cannot extend a Certbot snap or another virtual environment.
 
-The [v0.1.0 release](https://github.com/bunkerity/certbot-dns-hosttech/releases/tag/v0.1.0) will provide a wheel, source archive and `SHA256SUMS`. Once published, install the wheel:
+Install from PyPI:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install certbot-dns-hosttech 'certbot==5.9.0'
+.venv/bin/certbot plugins --text
+```
+
+The plugin should appear as `dns-hosttech`.
+
+Each [GitHub release](https://github.com/bunkerity/certbot-dns-hosttech/releases) also provides a wheel, source archive and `SHA256SUMS`. The [v0.1.0 release](https://github.com/bunkerity/certbot-dns-hosttech/releases/tag/v0.1.0) wheel installs like this:
 
 ```sh
 python3 -m venv .venv
@@ -170,10 +180,10 @@ python3 -m venv .venv
 
 Tests mock Hosttech or use an HTTP fake bound to localhost. No provider token is needed. The interface test discovers the installed entry point and calls Certbot `perform`/`cleanup` with real DNS-01 challenges for an apex and wildcard in one batch. It asserts that both values coexist and existing records survive cleanup. This tests the plugin interface and HTTP contract, not issuance by a real ACME server.
 
-CI runs lint, strict typing, 100% branch coverage and packaging checks across Python 3.11–3.14. Development dependencies are pinned with hashes in `requirements-dev.txt`; runtime package metadata retains compatible version ranges. Weekly Dependabot updates cover Python dependencies and GitHub Actions. SHA-pinned Plumber, CodeQL and OpenSSF Scorecard workflows follow the [OSS security workflow notes](.github/plumber/README.md). Score publishing is enabled only for public repositories.
+CI runs lint, strict typing, 100% branch coverage and packaging checks across Python 3.11–3.14. Development dependencies are pinned with hashes in `requirements-dev.txt`; runtime package metadata retains compatible version ranges. Weekly Dependabot updates cover Python dependencies and GitHub Actions. SHA-pinned Plumber, CodeQL and OpenSSF Scorecard workflows follow the [OSS security workflow notes](https://github.com/bunkerity/certbot-dns-hosttech/blob/main/.github/plumber/README.md). Score publishing is enabled only for public repositories.
 
 </details>
 
 ## License
 
-Apache-2.0. See [LICENSE](LICENSE).
+Apache-2.0. See [LICENSE](https://github.com/bunkerity/certbot-dns-hosttech/blob/main/LICENSE).

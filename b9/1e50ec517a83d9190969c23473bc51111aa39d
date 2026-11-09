@@ -1,0 +1,14 @@
+.github/CODE_OF_CONDUCT.md
+  h_a33a1e80933106 1-128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b91e50ec517a83d9190969c23473bc51111aa39d",
+  "prompts": {},
+  "humans": {
+    "h_a33a1e80933106": {
+      "author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

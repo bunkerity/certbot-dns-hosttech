@@ -1,0 +1,26 @@
+CHANGELOG.md
+  s_e6ce7fa2659416::t_9f5c1d2656fee2 3,10-13
+README.md
+  s_e6ce7fa2659416::t_5e4029b26e6872 33-43,183,189
+.github/workflows/release.yml
+  s_e6ce7fa2659416::t_5b5246b2fc963a 31,41-42,52-53,67,69,136,160-183
+  s_e6ce7fa2659416::t_b3de5fe179f7e3 105-106,109-135
+pyproject.toml
+  s_e6ce7fa2659416::t_5e4029b26e6872 9,14,21,26-27,36,38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c41f65ca6cf05c21228cae12f29eb76a083f0b26",
+  "prompts": {},
+  "sessions": {
+    "s_e6ce7fa2659416": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "19fa2594-d968-48b5-bd4e-3d103df8188e",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

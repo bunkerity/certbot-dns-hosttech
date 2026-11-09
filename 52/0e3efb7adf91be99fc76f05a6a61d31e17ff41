@@ -1,0 +1,59 @@
+.bestpractices.json
+  s_1ffe1354434287::t_d80b4ef24ec8f7 1-123
+.github/CODEOWNERS
+  s_1ffe1354434287::t_16610053ceb324 1
+.github/CONTRIBUTING.md
+  s_1ffe1354434287::t_22e5c6b7dafc46 11-23
+.github/SECURITY.md
+  s_1ffe1354434287::t_92c63b457e0d78 6-18
+.github/plumber/README.md
+  s_1ffe1354434287::t_ee872b486ab97b 7
+.github/workflows/codeql.yml
+  s_1ffe1354434287::t_d861767b06ec2c 32
+.github/workflows/fuzz.yml
+  s_1ffe1354434287::t_eb6b6f3d5a8a16 1-47
+.github/workflows/release.yml
+  s_1ffe1354434287::t_5bff53a5af25b8 89,95-101,111-112,158-159,169-170,172,174-180
+.github/workflows/tests.yml
+  s_1ffe1354434287::t_1595519dd99548 19-23
+AGENTS.md
+  s_1ffe1354434287::t_7f76e84835ded0 57
+CHANGELOG.md
+  s_1ffe1354434287::t_75322fa7caa9fd 3-10
+README.md
+  s_1ffe1354434287::t_dcb9395631e754 9-13,69,123-124,192-207
+certbot_dns_hosttech/_internal/dns_hosttech.py
+  s_1ffe1354434287::t_62063c5a1b43ac 58-60
+fuzz/corpus/api/envelope
+  s_1ffe1354434287::t_89f12c75cc6d29 1
+fuzz/corpus/credentials/malformed
+  s_1ffe1354434287::t_6f97a5a775d3de 1
+fuzz/corpus/zones/pagination
+  s_1ffe1354434287::t_2fb1ace88ad50a 1
+fuzz/fuzz_hosttech.py
+  s_1ffe1354434287::t_037c83b9cf07e1 1-147
+pyproject.toml
+  s_1ffe1354434287::t_17d66767b49131 41-44
+requirements-dev.txt
+  s_1ffe1354434287::t_1043cffac27a3c 2,66-70,396
+tests/test_dns_hosttech.py
+  s_1ffe1354434287::t_0c9f3aba862169 71-86
+tests/test_fuzz.py
+  s_1ffe1354434287::t_38f6e171702cf2 1-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "520e3efb7adf91be99fc76f05a6a61d31e17ff41",
+  "prompts": {},
+  "sessions": {
+    "s_1ffe1354434287": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1bf68-8369-7e82-92bf-0b8d9a565584",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}

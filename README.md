@@ -3,13 +3,9 @@
 [![Tests](https://github.com/bunkerity/certbot-dns-hosttech/actions/workflows/tests.yml/badge.svg)](https://github.com/bunkerity/certbot-dns-hosttech/actions/workflows/tests.yml)
 [![Codecov coverage](https://codecov.io/gh/bunkerity/certbot-dns-hosttech/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bunkerity/certbot-dns-hosttech)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/bunkerity/certbot-dns-hosttech/badge)](https://securityscorecards.dev/viewer/?uri=github.com/bunkerity/certbot-dns-hosttech)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/16488/badge)](https://www.bestpractices.dev/projects/16488)
 [![Plumber CI/CD security score](https://score.getplumber.io/github.com/bunkerity/certbot-dns-hosttech.svg)](https://score.getplumber.io/github.com/bunkerity/certbot-dns-hosttech)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/bunkerity/certbot-dns-hosttech/blob/main/LICENSE)
-
-<!-- After registering the project at bestpractices.dev, replace PROJECT_ID and uncomment:
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/PROJECT_ID/badge)](https://www.bestpractices.dev/projects/PROJECT_ID)
-Only claim the level actually awarded; the project has not registered yet.
--->
 
 [Certbot](https://certbot.eff.org/) DNS-01 authenticator for the [Hosttech DNS API](https://api.ns1.hosttech.eu/api/documentation/).
 Supports apex names, subdomains and wildcards, including two TXT values at the same challenge name.
